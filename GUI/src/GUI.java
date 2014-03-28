@@ -24,7 +24,7 @@ public class GUI
 	static JLabel title;
 	static ActionHandler onClick = new ActionHandler();
 	static JList<String> list,l2;
-	static int apilevel,compression;
+	static int apilevel=StaticConstants.default_apilevel,compression=StaticConstants.default_compression;
 	
 	
 	public static void main(String[] args)
@@ -158,7 +158,7 @@ public class GUI
 				    String selection = (String) list.getSelectedValue();
 				    if(selection.equals("Default"))
 				    {
-				    	apilevel=14;
+				    	apilevel=StaticConstants.default_apilevel;
 				    }
 				    else
 				    {

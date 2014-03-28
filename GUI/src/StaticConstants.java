@@ -17,4 +17,5 @@ public class StaticConstants
 		"Compression=8","Compression=9"
 		};
 	public static final int default_compression=5;
+	public static final int default_apilevel=14;
 }
