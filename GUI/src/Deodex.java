@@ -6,7 +6,7 @@ public class Deodex
 		static StringBuilder log = new StringBuilder("");
 		static int number=0;
 		
-		public static void deodex()
+		public static void deodex(int apilevel,int compression)
 		{
 		    FileFilter filefilter = new FileFilter(){
 				@Override
@@ -33,7 +33,7 @@ public class Deodex
 			for(File ob:list)
 				addToMap(ob);
 			
-			execute();
+			execute(apilevel,compression);
 			
 			writeLog();
 			
@@ -51,7 +51,7 @@ public class Deodex
 		}
 		
 		@SuppressWarnings("rawtypes")
-		private static void execute()
+		private static void execute(int apilevel, int compression)
 		{
 			try
 			{
@@ -63,7 +63,7 @@ public class Deodex
 				{
 					Map.Entry me = (Map.Entry)i.next();
 					File t = new File("framework\\"+me.getKey()+"."+me.getValue());
-					Process p = Runtime.getRuntime().exec("cmd /c start /W /B deodex.bat " + me.getKey() + " 5 18 pause " + me.getValue() + " " + t.exists());//cmd /c start /wait
+					Process p = Runtime.getRuntime().exec("cmd /c start /W /B deodex.bat " + me.getKey() + " " + compression + " " + apilevel + " pause " + me.getValue() + " " + t.exists());//cmd /c start /wait
 					in = new Scanner(p.getInputStream());
 					while(in.hasNextLine())
 					{

@@ -10,7 +10,7 @@ public class ActionHandler implements ActionListener
 		Object src = e.getSource();
 		if(src==GUI.deodex)
 		{
-			System.out.println("Deodexing");
+			Deodex.deodex(GUI.apilevel, GUI.compression);
 		}
 		else if(src==GUI.adbpull)
 		{
