@@ -82,8 +82,10 @@ public class Deodex
 					}			
 					
 					p.waitFor();
+					log.append("\n\n================COMPLETED DEODEXING===============\n").
+						append("===================DEODEXED " + (++k) + " of " + number+"===============");
 					System.out.println("\n\n================COMPLETED DEODEXING===============");
-					System.out.println("===================DEODEXED " + (++k) + " of " + number);
+					System.out.println("===================DEODEXED " + k + " of " + number+"===============");
 				}
 				
 			}

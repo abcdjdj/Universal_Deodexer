@@ -42,6 +42,8 @@ public class GUI
 		frame = new JFrame(StaticConstants.TITLE);
 		frame.setSize(600,500);
 		frame.getContentPane().setBackground(StaticConstants.BACKGROUND);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.setVisible(true);
 		
 		panel = new JPanel();
@@ -211,7 +213,7 @@ public class GUI
 		
 	}
 	
-	
+		
 	
 
 }

@@ -1,24 +1,43 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 
 public class ActionHandler implements ActionListener
 {
+	static Thread t;
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		Object src = e.getSource();
-		if(src==GUI.deodex)
+		if(t!=null && t.isAlive())
 		{
-			Deodex.deodex(GUI.apilevel, GUI.compression);
+			JOptionPane.showMessageDialog(GUI.frame,
+				     "There is already a process running.",
+				     "Error!",
+				     JOptionPane.ERROR_MESSAGE);
+			return;
 		}
-		else if(src==GUI.adbpull)
+		Object src = e.getSource();
+		if (src == GUI.deodex)
+		{
+			t = new Thread(){
+				@Override
+				public void run()
+				{
+					Deodex.deodex(GUI.apilevel, GUI.compression);
+					Verify.verify();
+				}
+			};
+			t.start();
+		}
+		else if (src == GUI.adbpull)
 		{
 			System.out.println("Pulling");
-		}
-		else if(src==GUI.clear)
+		} 
+		else if (src == GUI.clear)
 		{
-			Thread t = new Thread(){
+			t = new Thread()
+			{
 				@Override
 				public void run()
 				{
@@ -26,12 +45,13 @@ public class ActionHandler implements ActionListener
 				}
 			};
 			t.start();
-		}
-		else if(src==GUI.reset)
+		} 
+		else if (src == GUI.reset)
 		{
+			
 			System.out.println("Resetting");
-		}
-		else if(src==GUI.exit)
+		} 
+		else if (src == GUI.exit)
 		{
 			System.exit(0);
 		}
