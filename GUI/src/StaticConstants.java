@@ -11,4 +11,10 @@ public class StaticConstants
 			"2.3.2, 2.3.1, 2.3", "2.2.x", "2.1.x", "2.0.1", "2.0", "1.6",
 			"1.5", "1.1", "1.0"
 	};
+	public static final String[] compressions = {
+		"Compression=0","Compression=1","Compression=2","Compression=3",
+		"Compression=4","Compression=5","Compression=6","Compression=7",
+		"Compression=8","Compression=9"
+		};
+	public static final int default_compression=5;
 }
