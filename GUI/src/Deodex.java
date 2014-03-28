@@ -1,5 +1,14 @@
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+import javax.swing.JOptionPane;
 public class Deodex
 {
 		static HashMap<String,String> files = new HashMap<String,String>();;
@@ -112,6 +121,36 @@ public class Deodex
 				{
 					ob.delete();
 				}
+			}
+		}
+		
+		public static void clearFramework()
+		{
+			File[] list = new File("framework").listFiles();
+			for(File ob:list)
+			{
+				String name = ob.getName();
+				if(name.equals("smali.jar") || name.equals("baksmali.jar"))
+					continue;
+				else
+					ob.delete();
+					
+			}
+			
+			list = new File("framework").listFiles();
+			if(list.length==2)
+			{
+				JOptionPane.showMessageDialog(GUI.frame,
+					     "Cleared Framework files successfully.",
+					     "Success!",
+					     JOptionPane.PLAIN_MESSAGE);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(GUI.frame,
+			             "Framework files not deleted successfully.",
+			             "Error!",
+			             JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		

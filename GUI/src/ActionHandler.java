@@ -18,7 +18,14 @@ public class ActionHandler implements ActionListener
 		}
 		else if(src==GUI.clear)
 		{
-			System.out.println("Clearing framework");
+			Thread t = new Thread(){
+				@Override
+				public void run()
+				{
+					Deodex.clearFramework();
+				}
+			};
+			t.start();
 		}
 		else if(src==GUI.reset)
 		{
