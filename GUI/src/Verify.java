@@ -1,6 +1,8 @@
-import java.util.*;
-import java.util.zip.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class Verify
 {
@@ -38,6 +40,7 @@ public class Verify
 			{
 				System.out.println("FAILED : " + f.getName());
 			}
+			z.close();
 		}
 		catch (IOException e)
 		{
