@@ -156,5 +156,16 @@ public class Deodex
 			}
 		}
 		
+		public static void adbpull()
+		{
+			try
+			{
+				Process p = Runtime.getRuntime().exec("cmd /c start /wait adbpull.bat");
+				p.waitFor();
+			}
+			catch(Exception e)
+			{	e.printStackTrace(); }
+		}
+		
 		
 }

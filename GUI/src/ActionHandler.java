@@ -32,7 +32,14 @@ public class ActionHandler implements ActionListener
 		}
 		else if (src == GUI.adbpull)
 		{
-			System.out.println("Pulling");
+			t = new Thread(){
+				@Override
+				public void run()
+				{
+					Deodex.adbpull();
+				}
+			};
+			t.start();
 		} 
 		else if (src == GUI.clear)
 		{
