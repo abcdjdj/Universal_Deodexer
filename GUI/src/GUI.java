@@ -174,7 +174,6 @@ public class GUI
 				          apilevel++;
 				          }
 				    }
-				   System.out.println(apilevel);
 				}
 				
 				
@@ -199,8 +198,7 @@ public class GUI
 				{
 				String selection = (String) l2.getSelectedValue();
 				compression = selection.charAt(selection.length()-1)-48;
-				System.out.println(compression);
-				
+								
 			}
 		}});
 		
