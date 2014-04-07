@@ -6,7 +6,7 @@ import java.util.zip.ZipInputStream;
 
 public class Verify
 {
-
+	static StringBuilder sb=new StringBuilder();
 	public static void verify()
 	{
 		File list[] = new File("done").listFiles();
@@ -17,12 +17,15 @@ public class Verify
 					+ (int) ((double) (i + 1) / l * 100) + "%");
 			checkDex(list[i]);
 		}
+		
+		System.out.println(sb);
 	}
 
 	public static void checkDex(File f)
 	{
 		try
 		{
+			
 			ZipInputStream z = new ZipInputStream(new FileInputStream(f));
 			ZipEntry e;
 			boolean flag = false;
@@ -38,7 +41,7 @@ public class Verify
 			}
 			if (!flag)
 			{
-				System.out.println("FAILED : " + f.getName());
+				sb.append("FAILED : " + f.getName()+"\n");
 			}
 			z.close();
 		}
