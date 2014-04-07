@@ -128,6 +128,17 @@ public class Deodex
 		
 		public static void clearFramework()
 		{
+			int ch=JOptionPane.showConfirmDialog(
+					GUI.frame,
+					"Are you sure that you want\n to clear framework files?",
+					"Clear framework files?",
+					JOptionPane.YES_NO_OPTION);
+			
+			if(ch==1)
+			{
+				return;
+			}
+			
 			File[] list = new File("framework").listFiles();
 			for(File ob:list)
 			{
