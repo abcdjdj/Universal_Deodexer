@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.io.File;
+import java.io.FileFilter;
 
 public class StaticConstants
 {
@@ -18,4 +20,18 @@ public class StaticConstants
 		};
 	public static final int default_compression=5;
 	public static final int default_apilevel=14;
+	public static final FileFilter filefilter = new FileFilter(){
+		@Override
+		public boolean accept(File f)
+		{
+			if(f.getName().endsWith(".apk") || f.getName().endsWith(".jar"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	};
 }

@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,24 +17,11 @@ public class Deodex
 		
 		public static void deodex(int apilevel,int compression)
 		{
-		    FileFilter filefilter = new FileFilter(){
-				@Override
-				public boolean accept(File f)
-				{
-					if(f.getName().endsWith(".apk") || f.getName().endsWith(".jar"))
-					{
-						return true;
-					}
-					else
-					{
-						return false;
-					}
-				}
-			};
+		    
 			
-		    File[] list = new File("source").listFiles(filefilter);
+		    File[] list = new File("source").listFiles(StaticConstants.filefilter);
 			deleteUnnecessary(list);
-			list = new File("source").listFiles(filefilter);
+			list = new File("source").listFiles(StaticConstants.filefilter);
 			
 			number=list.length;
 			

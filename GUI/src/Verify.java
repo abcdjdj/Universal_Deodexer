@@ -9,7 +9,7 @@ public class Verify
 	static StringBuilder sb=new StringBuilder();
 	public static void verify()
 	{
-		File list[] = new File("done").listFiles();
+		File list[] = new File("done").listFiles(StaticConstants.filefilter);
 		int l = list.length, i = 0;
 		for (i = 0; i < l; i++)
 		{
@@ -41,7 +41,7 @@ public class Verify
 			}
 			if (!flag)
 			{
-				sb.append("FAILED : " + f.getName()+"\n");
+				sb.append("FAILED : ").append(f.getName()).append('\n');
 			}
 			z.close();
 		}
