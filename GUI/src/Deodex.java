@@ -283,7 +283,7 @@ public class Deodex
 				x.delete();
 
 			} 
-			else if (x.isFile()) 
+			else
 			{
 				x.delete();
 			}
