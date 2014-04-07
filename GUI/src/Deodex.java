@@ -108,7 +108,7 @@ public class Deodex
 				{}
 				else
 				{
-					ob.delete();
+					delete(ob);
 				}
 			}
 		}
@@ -136,7 +136,7 @@ public class Deodex
 				if(name.equals("smali.jar") || name.equals("baksmali.jar"))
 					continue;
 				else
-					ob.delete();
+					delete(ob);
 					
 			}
 			
@@ -185,7 +185,7 @@ public class Deodex
 			//source folder
 			File apks[] = new File("source").listFiles();
 			for(File ob : apks)
-				ob.delete();
+				delete(ob);
 			
 			//framework folder
 			clearFramework(false);
@@ -193,7 +193,7 @@ public class Deodex
 			//done folder
 			File done[] = new File("done").listFiles();
 			for(File ob : done)
-				ob.delete();
+				delete(ob);
 			
 			//working folder
 			File working[] = new File("working").listFiles();
@@ -210,7 +210,7 @@ public class Deodex
 						continue outer;
 						
 					default:
-						ob.delete();
+						delete(ob);
 				}
 			}
 			
@@ -247,6 +247,38 @@ public class Deodex
 			             JOptionPane.ERROR_MESSAGE);
 			}
 						
+		}
+		
+		public static void delete(File x) 
+		{
+			if (x.isDirectory()) 
+			{
+				delete_recursive(x);
+				x.delete();
+
+			} 
+			else if (x.isFile()) 
+			{
+				x.delete();
+			}
+			
+		}
+
+		public static void delete_recursive(File ob)
+		{
+			File tmp[] = ob.listFiles();
+			for (File c : tmp) 
+			{
+				c.delete();// Delete all possible files and empty folders
+			}
+
+			tmp = ob.listFiles();
+			for (File c : tmp) 
+			{
+				delete_recursive(c);// recursively delete non-empty folder
+				c.delete();// Once the non-empty folder is made empty, delete it too.
+							
+			}
 		}
 		
 }
