@@ -18,8 +18,11 @@ copy source\%filename%.%ext% framework /Y
 copy source\%filename%.odex framework /Y
 
 cd framework
-java -jar baksmali.jar -a %api% -x %filename%.odex -d %cd%
-java -jar smali.jar out/ -o classes.dex
+java -jar baksmali.jar -a %api% -x %filename%.odex -d %cd% 2> error.log
+type error.log
+java -jar smali.jar out/ -o classes.dex 2> error.log
+type error.log
+del error.log
 rmdir out /S /Q
 cd ..
 
