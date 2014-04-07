@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -126,17 +127,20 @@ public class Deodex
 			}
 		}
 		
-		public static void clearFramework()
+		public static void clearFramework(boolean showConfirm)
 		{
-			int ch=JOptionPane.showConfirmDialog(
+			if(showConfirm==true)
+			{
+				int ch=JOptionPane.showConfirmDialog(
 					GUI.frame,
 					"Are you sure that you want\n to clear framework files?",
 					"Clear framework files?",
 					JOptionPane.YES_NO_OPTION);
 			
-			if(ch==1)
-			{
-				return;
+				if(ch==1)
+				{
+					return;
+				}
 			}
 			
 			File[] list = new File("framework").listFiles();
@@ -150,20 +154,24 @@ public class Deodex
 					
 			}
 			
-			list = new File("framework").listFiles();
-			if(list.length==2)
+			
+			if(showConfirm==true)
 			{
+				list = new File("framework").listFiles();
+				if(list.length==2)
+				{
 				JOptionPane.showMessageDialog(GUI.frame,
 					     "Cleared Framework files successfully.",
 					     "Success!",
 					     JOptionPane.PLAIN_MESSAGE);
-			}
-			else
-			{
-				JOptionPane.showMessageDialog(GUI.frame,
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(GUI.frame,
 			             "Framework files not deleted successfully.",
 			             "Error!",
 			             JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 		
@@ -178,5 +186,81 @@ public class Deodex
 			{	e.printStackTrace(); }
 		}
 		
+		public static void reset()
+		{
+			int ch=JOptionPane.showConfirmDialog(
+					GUI.frame,
+					"Are you sure that you want reset the tool?\nWARNING: ALL YOUR DATA IN THE TOOL WILL BE DELETED",
+					"Clear framework files?",
+					JOptionPane.YES_NO_OPTION);
+			if(ch==1)
+				return;
+			
+			//source folder
+			File apks[] = new File("source").listFiles();
+			for(File ob : apks)
+				ob.delete();
+			
+			//framework folder
+			clearFramework(false);
+			
+			//done folder
+			File done[] = new File("done").listFiles();
+			for(File ob : done)
+				ob.delete();
+			
+			//working folder
+			File working[] = new File("working").listFiles();
+			outer : for(File ob : working)
+			{
+				String name=ob.getName();
+				switch(name)
+				{
+					case "build":
+					case "7za.exe":
+					case "adb.exe":
+					case "AdbWinApi.dll":
+					case "AdbWinUsbApi.dll":
+						continue outer;
+						
+					default:
+						ob.delete();
+				}
+			}
+			
+			boolean success = new File("source").listFiles().length==0 && new File("done").listFiles().length==0;
+			ArrayList<String> missing = new ArrayList<String>(0);
+			String files[] = {"framework\\smali.jar","framework\\baksmali.jar","working\\build","working\\7za.exe",
+					"working\\adb.exe","working\\AdbWinApi.dll", "working\\AdbWinUsbApi.dll"
+			};
+			for(String x:files)
+			{
+				File f = new File(x);
+				if(!f.exists())
+				{
+					missing.add(x);
+				}
+			}
+			if(missing.size()==0 && success)
+			{
+				JOptionPane.showMessageDialog(GUI.frame,
+					     "Reset tool successfully.",
+					     "Success!",
+					     JOptionPane.PLAIN_MESSAGE);
+			}
+			else
+			{
+				StringBuilder sb = new StringBuilder();
+				for(String s:missing)
+				{
+					sb.append(s).append('\n');
+				}
+				JOptionPane.showMessageDialog(GUI.frame,
+			             "Could not reset tool. Missing files - \n"+sb+"Kindly re-download the tool.",
+			             "Error!",
+			             JOptionPane.ERROR_MESSAGE);
+			}
+						
+		}
 		
 }

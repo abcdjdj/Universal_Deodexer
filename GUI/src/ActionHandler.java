@@ -48,7 +48,7 @@ public class ActionHandler implements ActionListener
 				@Override
 				public void run()
 				{
-					Deodex.clearFramework();
+					Deodex.clearFramework(true);
 				}
 			};
 			t.start();
@@ -56,7 +56,15 @@ public class ActionHandler implements ActionListener
 		else if (src == GUI.reset)
 		{
 			
-			System.out.println("Resetting");
+			t = new Thread()
+			{
+				@Override
+				public void run()
+				{
+					Deodex.reset();
+				}
+			};
+			t.start();
 		} 
 		else if (src == GUI.exit)
 		{
