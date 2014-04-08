@@ -53,6 +53,7 @@ public class ActionHandler implements ActionListener
 				{
 					Deodex.deodex(GUI.apilevel, GUI.compression);
 					Verify.verify();
+					System.out.println("=======DEODEXING PROCESS COMPLETE=====");
 				}
 			};
 			t.start();
