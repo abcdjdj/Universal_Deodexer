@@ -240,7 +240,11 @@ public class Deodex
 				}
 			}
 			
-			boolean success = new File("source").listFiles().length==0 && new File("done").listFiles().length==0;
+			File build = new File("working\\build");
+			delete(build);
+			build.mkdir();
+			
+			boolean success = new File("source").listFiles().length==0 && new File("done").listFiles().length==0 && build.listFiles().length==0;
 			ArrayList<String> missing = new ArrayList<String>(0);
 			String files[] = {"framework\\smali.jar","framework\\baksmali.jar","working\\build","working\\7za.exe",
 					"working\\adb.exe","working\\AdbWinApi.dll", "working\\AdbWinUsbApi.dll"
