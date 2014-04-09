@@ -37,7 +37,7 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 public class Deodex
 {
-		static HashMap<String,String> files = new HashMap<String,String>();;
+		static HashMap<String,String> files = new HashMap<String,String>();
 		static StringBuilder log = new StringBuilder("");
 		static int number=0;
 		
@@ -80,12 +80,13 @@ public class Deodex
 				int k=0;
 				Set set = files.entrySet();
 				Scanner in;
-				Iterator i = set.iterator();
+				Iterator i = set.iterator();Process p;
+				File t;Map.Entry me;
 				while(i.hasNext())
 				{
-					Map.Entry me = (Map.Entry)i.next();
-					File t = new File("framework\\"+me.getKey()+"."+me.getValue());
-					Process p = Runtime.getRuntime().exec("cmd /c start /W /B deodex.bat " + me.getKey() + " " + compression + " " + apilevel + " pause " + me.getValue() + " " + t.exists());//cmd /c start /wait
+					me = (Map.Entry)i.next();
+					t = new File("framework\\"+me.getKey()+"."+me.getValue());
+					p = Runtime.getRuntime().exec("cmd /c start /W /B deodex.bat " + me.getKey() + " " + compression + " " + apilevel + " pause " + me.getValue() + " " + t.exists());
 					in = new Scanner(p.getInputStream());
 					while(in.hasNextLine())
 					{
@@ -233,7 +234,7 @@ public class Deodex
 					case "adb.exe":
 					case "AdbWinApi.dll":
 					case "AdbWinUsbApi.dll":
-						continue outer;
+						continue outer;//Don't delete the files in the above cases
 						
 					default:
 						delete(ob);
@@ -279,7 +280,7 @@ public class Deodex
 						
 		}
 		
-		public static void delete(File x) 
+		private static void delete(File x) 
 		{
 			if (x.isDirectory()) 
 			{
@@ -294,7 +295,7 @@ public class Deodex
 			
 		}
 
-		public static void delete_recursive(File ob)
+		private static void delete_recursive(File ob)
 		{
 			File tmp[] = ob.listFiles();
 			for (File c : tmp) 

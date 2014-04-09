@@ -50,7 +50,7 @@ public class Verify
 			System.out.println("Successfully deodexed all files!");
 	}
 
-	public static void checkDex(File f)
+	private static void checkDex(File f)
 	{
 		try
 		{

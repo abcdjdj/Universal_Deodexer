@@ -146,11 +146,10 @@ public class GUI
 	public static void addBlanks(JPanel a)
 	{
 		JLabel[] blank = new JLabel[2]; 
-		for(int i=0;i<blank.length;i++)
+		for(JLabel b : blank)
 		{
-			blank[i] = new JLabel();
-			blank[i].setText(" ");
-			a.add(blank[i]);
+			b = new JLabel(" ");
+			a.add(b);
 		}
 	}
 	
@@ -190,13 +189,13 @@ public class GUI
 				    }
 				    else
 				    {
-				        apilevel=1;
+				       apilevel=1;
 				       for(int i=StaticConstants.api_versions.length-1;i>0;i--)
 				          {
-				            if(selection.equalsIgnoreCase(StaticConstants.api_versions[i]))
-						     {
-					           break;
-						      }
+				            	if(selection.equalsIgnoreCase(StaticConstants.api_versions[i]))
+				            	{
+				            		break;
+				            	}
 				          apilevel++;
 				          }
 				    }
@@ -232,12 +231,7 @@ public class GUI
 		comp.setForeground(Color.WHITE);
 		east.add(comp);
 		east.add(scroller2);
-		
 				
-		
 	}
 	
-		
-	
-
 }
