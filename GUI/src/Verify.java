@@ -44,8 +44,10 @@ public class Verify
 					+ (int) ((double) (i + 1) / l * 100) + "%");
 			checkDex(list[i]);
 		}
-		
-		System.out.println(sb);
+		if(sb.toString().contains("FAILED"))
+			System.out.println(sb);
+		else
+			System.out.println("Successfully deodexed all files!");
 	}
 
 	public static void checkDex(File f)
