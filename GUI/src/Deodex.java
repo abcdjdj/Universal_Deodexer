@@ -96,7 +96,7 @@ public class Deodex
 					
 					p.waitFor();
 					log.append("\n\n================COMPLETED DEODEXING===============\n").
-						append("===================DEODEXED " + (++k) + " of " + number+"===============");
+						append("===================DEODEXED ").append(++k).append(" of ").append(number).append("===============");
 					System.out.println("\n\n================COMPLETED DEODEXING===============");
 					System.out.println("===================DEODEXED " + k + " of " + number+"===============");
 				}
