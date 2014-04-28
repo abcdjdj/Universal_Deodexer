@@ -1,2 +1,3 @@
 @echo off
-java GUI
+java -jar V5.jar
+pause
