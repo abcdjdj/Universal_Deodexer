@@ -52,6 +52,8 @@ public class ActionHandler implements ActionListener
 				public void run()
 				{
 					Deodex.deodex(GUI.apilevel, GUI.compression);
+					if(Deodex.number==0)
+						return;
 					Verify.verify();
 					System.out.println("=======DEODEXING PROCESS COMPLETE=====");
 				}

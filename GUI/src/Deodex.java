@@ -50,6 +50,11 @@ public class Deodex
 			list = new File("source").listFiles(StaticConstants.filefilter);
 			
 			number=list.length;
+			if(number==0)
+			{
+				System.out.println("\nNo files found in source folder");
+				return;
+			}
 			
 			
 			for(File ob:list)
