@@ -57,6 +57,8 @@ public class Deodex
 			}
 			
 			files.clear();
+			log.setLength(0);
+			
 			for(File ob:list)
 				addToMap(ob);
 			
