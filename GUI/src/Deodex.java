@@ -63,7 +63,7 @@ public class Deodex
 				addToMap(ob);
 			
 			execute(apilevel,compression);
-			
+			Verify.verify();
 			writeLog();
 			
 			
@@ -104,7 +104,7 @@ public class Deodex
 					
 					p.waitFor();
 					log.append("\n\n================COMPLETED DEODEXING===============\n").
-						append("===================DEODEXED ").append(++k).append(" of ").append(number).append("===============");
+						append("===================DEODEXED ").append(++k).append(" of ").append(number).append("===============\n");
 					System.out.println("\n\n================COMPLETED DEODEXING===============");
 					System.out.println("===================DEODEXED " + k + " of " + number+"===============");
 				}

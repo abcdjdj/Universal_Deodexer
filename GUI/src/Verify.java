@@ -36,18 +36,21 @@ public class Verify
 	static StringBuilder sb=new StringBuilder();
 	public static void verify()
 	{
+		sb.setLength(0);String line;
 		File list[] = new File("done").listFiles(StaticConstants.filefilter);
 		int l = list.length, i = 0;
 		for (i = 0; i < l; i++)
 		{
-			System.out.println("Done checking "
+			line=("Done checking "
 					+ (int) ((double) (i + 1) / l * 100) + "%");
+			System.out.println(line);
+			Deodex.log.append(line).append('\n');
 			checkDex(list[i]);
 		}
-		if(sb.toString().contains("FAILED"))
-			System.out.println(sb);
-		else
-			System.out.println("Successfully deodexed all files!");
+		if(!sb.toString().contains("FAILED"))
+			sb.append("Successfully deodexed all files!");
+		System.out.println(sb);
+		Deodex.log.append(sb);
 	}
 
 	private static void checkDex(File f)
