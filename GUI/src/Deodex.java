@@ -52,7 +52,10 @@ public class Deodex
 			number=list.length;
 			if(number==0)
 			{
-				System.out.println("\nNo files found in source folder");
+				JOptionPane.showMessageDialog(GUI.frame,
+			             "No files found in the \"source\" folder.",
+			             "Error!",
+			             JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
