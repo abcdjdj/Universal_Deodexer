@@ -308,16 +308,22 @@ public class Deodex
 		private static void delete_recursive(File ob)
 		{
 			File tmp[] = ob.listFiles();
-			for (File c : tmp) 
+			int i,l=tmp.length;
+			for (i=0;i<l;i++) 
 			{
-				c.delete();// Delete all possible files and empty folders
+				tmp[i].delete();// Delete all possible files and empty folders
+				if(!tmp[i].exists())
+					tmp[i]=null;
 			}
 
-			tmp = ob.listFiles();
-			for (File c : tmp) 
+			
+			for (i=0;i<l;i++) 
 			{
-				delete_recursive(c);// recursively delete non-empty folder
-				c.delete();// Once the non-empty folder is made empty, delete it too.
+				if(tmp[i]!=null)
+				{
+					delete_recursive(tmp[i]);// recursively delete non-empty folder
+					tmp[i].delete();// Once the non-empty folder is made empty, delete it too.
+				}
 							
 			}
 		}
