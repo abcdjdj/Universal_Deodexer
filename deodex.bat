@@ -18,8 +18,10 @@ copy source\%filename%.%ext% framework /Y
 copy source\%filename%.odex framework /Y
 
 cd framework
+echo Disassembling odex file..
 java -jar baksmali.jar -a %api% -x %filename%.odex -d %cd% 2> error.log
 type error.log
+echo Creating classes.dex file..
 java -jar smali.jar out/ -o classes.dex 2> error.log
 type error.log
 del error.log
@@ -38,6 +40,7 @@ cd working
 del %filename%.%ext%
 
 cd build
+echo Repacking deodexed apk..
 ..\7za.exe a -tzip %filename%.%ext% * -mx%compress% 
 cd ..
 
